@@ -11,7 +11,7 @@
     "index.js",
     "index.d.ts",
     "ios",
-    "FlutterModuleRn.podspec",
+    "IdmetaIosRn.podspec",
     "react-native.config.js",
     "ios/**/*",
     "*.m",
