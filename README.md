@@ -135,47 +135,49 @@ For Debug , change Build Configuration to "Release".
 ```js
 // App.tsx
 
-import React from 'react';
-import { SafeAreaView, Button, Text, StyleSheet, Alert } from 'react-native';
-import { startIdmetaFlow } from 'idmeta-ios-rn'; // Ensure this is the correct path for your module
 
-const App = () => {
+import React from 'react';
+import { Button, SafeAreaView, ScrollView, StatusBar, Text, View, StyleSheet, useColorScheme } from 'react-native';
+import IdmetaIosRn from 'idmeta-ios-rn';
+
+const startFlutterScreen = () => {
   // Set your flowId and userToken values
   const flowId = 'YourFlowId';
   const userToken = 'YourToken'; //e.g Bearer 12|xxxxxxxxxxxxxxx
 
+  IdmetaIosRn.startActivity(flowId, userToken, (response: string) => {
+    console.log('Response from Idmeta:', response);
+  });
+};
 
-  const handleStartFlow = () => {
-    try {
-      startIdmetaFlow(flowId, userToken);
-    } catch (error) {
-      Alert.alert('Error', 'Failed to start the Idmeta flow.');
-      console.error('Error starting Idmeta flow:', error);
-    }
+const App = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? 'dark' : 'light',
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Start IDMeta Flow</Text>
-      <Button title="Start Idmeta Flow" onPress={handleStartFlow} />
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} backgroundColor={backgroundStyle.backgroundColor} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
+        <View style={{ backgroundColor: isDarkMode ? 'black' : 'white' }}>
+          <Button title="Start Flutter Screen" onPress={startFlutterScreen} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default App;
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 20,
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
   },
 });
+
+export default App;
+
+
 
 
 ```
