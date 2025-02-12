@@ -135,12 +135,11 @@ For Debug , change Build Configuration to "Release".
 ```js
 // App.tsx
 
-
 import React from 'react';
 import { Button, SafeAreaView, ScrollView, StatusBar, Text, View, StyleSheet, useColorScheme } from 'react-native';
 import IdmetaIosRn from 'idmeta-ios-rn';
 
-const startFlutterScreen = () => {
+const startIdmetaFlow = () => {
   // Set your flowId and userToken values
   const flowId = 'YourFlowId';
   const userToken = 'YourToken'; //e.g Bearer 12|xxxxxxxxxxxxxxx
@@ -161,7 +160,7 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} backgroundColor={backgroundStyle.backgroundColor} />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
         <View style={{ backgroundColor: isDarkMode ? 'black' : 'white' }}>
-          <Button title="Start Flutter Screen" onPress={startFlutterScreen} />
+          <Button title="Start Idmeta Flow" onPress={startIdmetaFlow} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -176,7 +175,6 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
 
 
 
